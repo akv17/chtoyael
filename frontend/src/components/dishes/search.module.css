@@ -1,0 +1,33 @@
+.form {
+    display: flex;
+    height: 100%;
+}
+
+.input {
+    background: none;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px 0px 0px 10px;
+    font-size: 18px;
+    padding: 0vh 0.5vw;
+    width: 20vw;
+}
+
+.submit {
+    color: black;
+    border: 2px solid white;
+    background: white;
+    border-radius: 0px 10px 10px 0px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 0.75vw;
+}
+.emote {
+    transform: scale(-1, 1);
+    font-size: 44px;
+}
+.submit:hover {
+    border: 2px solid var(--COLOR_ACCENT);
+    background: var(--COLOR_ACCENT);
+}

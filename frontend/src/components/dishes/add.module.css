@@ -1,0 +1,19 @@
+.button {
+    background: white;
+    text-decoration: none;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 2px solid white;
+    font-size: 24px;
+    font-weight: 300;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button:hover {
+    background: var(--COLOR_ACCENT);
+    border: 2px solid var(--COLOR_ACCENT);
+}

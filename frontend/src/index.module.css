@@ -1,0 +1,13 @@
+:root {
+  --COLOR_BACKROUND: #222222;
+  --COLOR_ACCENT: rgb(196, 0, 121);
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  background: var(--COLOR_BACKROUND);
+}
