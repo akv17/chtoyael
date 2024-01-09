@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1vh;
+    padding: 2vh 1vw;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+.container:hover {
+    color: var(--COLOR_ACCENT);
+    border: 2px solid var(--COLOR_ACCENT);
+}
+
+.value {
+    font-size: 15px;
+}
+
+.supplementContainer {
+    display: flex;
+    gap: 1vw;
+    font-size: 13px;
+}
+
+.supplementValue {
+
+}

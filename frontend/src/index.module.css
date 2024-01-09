@@ -1,5 +1,5 @@
 :root {
-  --COLOR_BACKROUND: #222222;
+  --COLOR_BACKROUND: #131313;
   --COLOR_ACCENT: rgb(196, 0, 121);
 }
 
@@ -10,4 +10,6 @@ body {
   font-weight: 400;
   font-size: 18px;
   background: var(--COLOR_BACKROUND);
+  height: 100vh;
+  width: 100vw;
 }

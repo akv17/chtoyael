@@ -7,7 +7,8 @@ export default function Header() {
     return (
         <div className={styles.container}>
             <HeaderLogo/>
-            <HeaderLinkButton uri="/" text="Лента"/>
+            <HeaderLinkButton uri="/today" text="Сегодня"/>
+            <HeaderLinkButton uri="/feed" text="Лента"/>
             <HeaderLinkButton uri="/dishes" text="Еда"/>
         </div>
     )
@@ -15,7 +16,7 @@ export default function Header() {
 
 
 function HeaderLogo() {
-    return <Link to="/" className={styles.logo}>Чтояел?</Link>
+    return <Link to="/today" className={styles.logo}>Чтояел?</Link>
 }
 
 

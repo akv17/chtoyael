@@ -8,10 +8,21 @@ import {
 
 import { FeedRoute, feedLoader }from './routes/feed';
 import { DishesRoute, dishesLoader, dishesAction }from './routes/dishes';
+import { TodayRoute, todayLoader } from "./routes/today";
 
 const router = createBrowserRouter([
     {
         path: "/",
+        element: <TodayRoute/>,
+        loader: todayLoader,
+    },
+    {
+        path: "/today",
+        element: <TodayRoute/>,
+        loader: todayLoader,
+    },
+    {
+        path: "/feed",
         element: <FeedRoute/>,
         loader: feedLoader,
     },
