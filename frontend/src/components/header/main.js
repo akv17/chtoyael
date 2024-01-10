@@ -6,17 +6,21 @@ import { Link } from "react-router-dom"
 export default function Header() {
     return (
         <div className={styles.container}>
-            <HeaderLogo/>
-            <HeaderLinkButton uri="/today" text="Сегодня"/>
-            <HeaderLinkButton uri="/feed" text="Лента"/>
-            <HeaderLinkButton uri="/dishes" text="Еда"/>
+            <HeaderImage/>
+            <div className={styles.controlContainer}>
+                <div className={styles.linkButtonContainer}>
+                    <HeaderLinkButton uri="/today" text="Сегодня"/>
+                    <HeaderLinkButton uri="/feed" text="Лента"/>
+                    <HeaderLinkButton uri="/dishes" text="Еда"/>
+                </div>
+            </div>
         </div>
     )
 }
 
 
-function HeaderLogo() {
-    return <Link to="/today" className={styles.logo}>Чтояел?</Link>
+function HeaderImage() {
+    return <img className={styles.image} src="/h1_.jpg"></img>
 }
 
 
