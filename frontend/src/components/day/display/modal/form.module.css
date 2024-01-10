@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    color: white;
+    margin-top: 5vh;
+    width: 10vw;
+}
+
+.formLabel {
+    font-size: 24px;
+}
+.formInput {
+    background: none;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    padding: 0.5vh 0.5vw;
+}
+
+.submitContainer {
+    display: flex;
+    justify-content: end;
+    margin-top: 4vh;
+    gap: 1vw;
+}
+
+.submit {
+    background: white;
+    text-decoration: none;
+    width: 3vw;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 2px solid white;
+    font-size: 24px;
+    font-weight: 300;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.formSubmit:hover {
+    background: var(--COLOR_ACCENT);
+    border: 2px solid var(--COLOR_ACCENT);
+}

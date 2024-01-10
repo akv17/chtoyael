@@ -1,6 +1,6 @@
 import { useSubmit } from "react-router-dom";
 import styles from "./add.module.css"
-import MealModal from "./modal";
+import MealModal from "./modal/main";
 
 
 export function AddButton({state, setState}) {
@@ -13,7 +13,7 @@ export function AddButton({state, setState}) {
 }
 
 
-export function AddModal({state, setState}) {
+export function AddModal({state, setState, allDishes}) {
     const submit = useSubmit()
     
     function onClose() {
@@ -25,5 +25,5 @@ export function AddModal({state, setState}) {
         submit(e.currentTarget)
     }
 
-    return <MealModal action="add" onSubmit={onSubmit} onClose={onClose}/>
+    return <MealModal action="add" onSubmit={onSubmit} onClose={onClose} allDishes={allDishes}/>
 }

@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    gap: 0.5vw;
+}
+
+.dishContainer {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.dishImage {
+    width: 32px;
+    height: 32px;
+    background: white;
+    border-radius: 10px;
+
+}
+.dishName {
+    font-size: 12px;
+
+}

@@ -1,156 +1,119 @@
-export const DAYS = [
-    {
-        "id": "05-01-2024",
-        "timestamp": {
-            "dayName": "Ср",
-            "day": 5,
-            "month": 1,
-            "year": 2024,
-        },
-        "meals": [
-            {
-                "name": "Завтрак",
-                "start": {
-                    "hour": "12",
-                    "minute": "00",
-                },
-                "end": {
-                    "hour": "12",
-                    "minute": "30",
-                },
-                "items": [
-                    {
-                        "protein": 5.0,
-                        "fat": 8.0,
-                        "carbs": 10.0,
-                        "kcal": 10.0,
-                        "weight": 100,
-                        "name": "Гречка",
-                        "image": null,
-                    },
-                    {
-                        "id": "",
-                        "protein": 5.0,
-                        "fat": 8.0,
-                        "carbs": 10.0,
-                        "kcal": 10.0,
-                        "weight": 50,
-                        "name": "Говядина",
-                        "image": null,
-                    },
-                ]
-            },
-            {
-                "name": "Завтрак",
-                "start": {
-                    "hour": "12",
-                    "minute": "00",
-                },
-                "end": {
-                    "hour": "12",
-                    "minute": "30",
-                },
-                "items": [
-                    {
-                        "protein": 5.0,
-                        "fat": 8.0,
-                        "carbs": 10.0,
-                        "kcal": 10.0,
-                        "weight": 100,
-                        "name": "Гречка",
-                        "image": null,
-                    },
-                    {
-                        "id": "",
-                        "protein": 5.0,
-                        "fat": 8.0,
-                        "carbs": 10.0,
-                        "kcal": 10.0,
-                        "weight": 50,
-                        "name": "Говядина",
-                        "image": null,
-                    },
-                ]
-            },
-        ],
-    },
-    {
-        "id": "04-01-2024",
-        "timestamp": {
-            "dayName": "Вт",
-            "day": 4,
-            "month": 1,
-            "year": 2024,
-        },
-        "meals": [
-            {
-                "name": "Завтрак",
-                "start": {
-                    "hour": "11",
-                    "minute": "00",
-                },
-                "end": {
-                    "hour": "11",
-                    "minute": "30",
-                },
-                "items": [
-                    {
-                        "id": "",
-                        "protein": 5.0,
-                        "fat": 8.0,
-                        "carbs": 10.0,
-                        "kcal": 10.0,
-                        "weight": 100
-                    },
-                    {
-                        "id": "",
-                        "protein": 5.0,
-                        "fat": 8.0,
-                        "carbs": 10.0,
-                        "kcal": 10.0,
-                        "weight": 50
-                    },
-                ]
+export class Day {
+    constructor(data) {
+        this._data = data
+    }
+
+    getName() {
+        return this._data.timestamp.dayName
+    }
+
+    getDateString() {
+        return `${this._data.timestamp.day}.${this._data.timestamp.month}.${this._data.timestamp.year}`
+    }
+
+    getMeals() {
+        return this._data.meals.map(m => {return new Meal(m)})
+    }
+
+    getParamTotal(name) {
+        let accum = 0
+        for (const meal of this._data.meals) {
+            for (const item of meal.items) {
+                accum += item[name]
             }
-        ]
-    },
-    {
-        "id": "03-01-2024",
-        "timestamp": {
-            "dayName": "Пн",
-            "day": 3,
-            "month": 1,
-            "year": 2024,
-        },
-        "meals": [
-            {
-                "name": "Завтрак",
-                "start": {
-                    "hour": "10",
-                    "minute": "00",
-                },
-                "end": {
-                    "hour": "10",
-                    "minute": "30",
-                },
-                "items": [
-                    {
-                        "protein": 5.0,
-                        "fat": 8.0,
-                        "carbs": 10.0,
-                        "kcal": 10.0,
-                        "weight": 100,
-                    },
-                    {
-                        "id": "",
-                        "protein": 5.0,
-                        "fat": 8.0,
-                        "carbs": 10.0,
-                        "kcal": 10.0,
-                        "weight": 50
-                    },
-                ]
+        }
+        return accum
+    }
+
+    getWeightTotal() {
+        let accum = 0
+        for (const meal of this._data.meals) {
+            for (const item of meal.items.filter(it => it.name !== "Вода")) {
+                accum += item.weight
             }
-        ]
-    },
-]
+        }
+        return accum
+    }
+
+    getWaterTotal() {
+        let accum = 0
+        for (const meal of this._data.meals) {
+            for (const item of meal.items.filter(it => it.name === "Вода")) {
+                accum += item.weight
+            }
+        }
+        return accum
+    }
+}
+
+
+export class Meal {
+    
+    constructor(data) {
+        this._data = data
+
+    }
+
+    getName() {
+        return this._data.name
+    }
+
+    getTimeStartString() {
+        return `${this._data.start.hour}:${this._data.start.minute}`
+    }
+
+    getTimeEndString() {
+        return `${this._data.end.hour}:${this._data.end.minute}`
+    }
+
+    getParamTotal(name) {
+        let accum = 0
+        for (const item of this._data.items) {
+            accum += item[name]
+        }
+        return accum
+    }
+
+    getWeightTotal() {
+        let accum = 0
+        for (const item of this._data.items.filter(it => it.name !== "Вода")) {
+            accum += item.weight
+        }
+        return accum
+    }
+
+    getWaterTotal() {
+        let accum = 0
+        for (const item of this._data.items.filter(it => it.name === "Вода")) {
+            accum += item.weight
+        }
+        return accum
+    }
+
+    getDishes() {
+        return this._data.items.map(it => {return new Dish(it)})
+    }
+}
+
+
+export class Dish {
+    constructor(data) {
+        this._data = data
+    }
+
+    getId() {
+        return this._data.id
+    }
+
+    getName() {
+        return this._data.name
+    }
+
+    getImage() {
+        return null
+    }
+
+    getWeight() {
+        return this._data.weight
+    }
+}

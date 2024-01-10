@@ -3,7 +3,7 @@ import { useLoaderData, redirect } from "react-router-dom"
 import styles from "./dishes.module.css"
 import Header from "../components/header/main";
 import DishesDisplay from "../components/dishes/main"
-import { DishesServiceMock } from "../services/dishes";
+import DishesServiceMock from "../services/dishes";
 
 const service = new DishesServiceMock()
 

@@ -1,4 +1,4 @@
-import { DAYS } from "./data"
+import { DAYS } from "./const"
 
 
 export class FeedServiceMock {
