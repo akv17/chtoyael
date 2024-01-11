@@ -51,7 +51,6 @@ export class Meal {
     
     constructor(data) {
         this._data = data
-
     }
 
     getName() {
@@ -99,7 +98,6 @@ export class Meal {
 export class Dish {
     constructor(data) {
         this._data = data
-        this._weight = 100
     }
 
     getId() {
@@ -115,10 +113,6 @@ export class Dish {
     }
 
     getWeight() {
-        return this._weight
-    }
-
-    updateWeight(value) {
-        this._weight += value
+        return this._data.weight
     }
 }

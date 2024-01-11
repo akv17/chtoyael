@@ -9,7 +9,10 @@ export default class DayServiceMock {
     }
     
     async getDay(id) {
-
+        const map = new Map(this.days.map(d => [d.id, d]))
+        let day = map.get(id)
+        day = day !== undefined ? new Day(day) : null
+        return day
     }
 
     async getToday() {

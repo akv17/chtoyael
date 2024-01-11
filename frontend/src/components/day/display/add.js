@@ -25,5 +25,5 @@ export function AddModal({state, setState, allDishes}) {
         submit(e.currentTarget)
     }
 
-    return <MealModal action="add" onSubmit={onSubmit} onClose={onClose} allDishes={allDishes}/>
+    return <MealModal action="addMeal" onSubmit={onSubmit} onClose={onClose} allDishes={allDishes}/>
 }

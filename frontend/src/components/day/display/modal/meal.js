@@ -22,14 +22,14 @@ export function MealTime({start="", end=""}) {
             <label className={styles.label}>Время</label>
             <div className={styles.timeSlotsContainer}>
                 <div className={styles.timeSlot}>
-                    <input type="text" name="time-start-hour" className={styles.timeValue} defaultValue="10"/>
+                    <input type="text" name="timeStartHour" className={styles.timeValue} defaultValue="10"/>
                     <div className={styles.timeValueSep}>:</div>
-                    <input type="text" name="time-start-minute" className={styles.timeValue} defaultValue="00"/>
+                    <input type="text" name="timeStartMinute" className={styles.timeValue} defaultValue="00"/>
                 </div>
                 <div className={styles.timeSlot}>
-                    <input type="text" name="time-end-hour" className={styles.timeValue} defaultValue="10"/>
+                    <input type="text" name="timeEndHour" className={styles.timeValue} defaultValue="10"/>
                     <div className={styles.timeValueSep}>:</div>
-                    <input type="text" name="time-end-minute" className={styles.timeValue} defaultValue="30"/>
+                    <input type="text" name="timeEndMinute" className={styles.timeValue} defaultValue="30"/>
                 </div>
             </div>
         </div>
