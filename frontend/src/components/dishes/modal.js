@@ -2,7 +2,7 @@ import { Form } from "react-router-dom";
 import styles from "./modal.module.css"
 
 
-export default function ItemModal({
+export default function DishModal({
     action,
     onSubmit,
     onClose,
@@ -70,7 +70,7 @@ export default function ItemModal({
                         </div>
                     </div>
                     <div className={styles.formSubmitContainer}>
-                        <button type="submit" name="submit" className={styles.formSubmit} onClick={onSubmit}>✔️</button>
+                        <button type="submit" name="submit" className={styles.formSubmit} onClick={onSubmit}>➕</button>
                         {onDelete !== null && <button type="submit" name="delete" className={styles.formSubmit} onClick={onSubmit}>✖️</button>}
                     </div>
                 </Form>

@@ -2,18 +2,18 @@ import { useState } from "react"
 import styles from "./main.module.css"
 import { AddButton, AddModal } from "./add"
 import SearchBar from "./search"
-import { ItemsDisplay } from "./display"
+import Display from "./display"
 import { EditModal } from "./edit"
 
 
 const initState = {
     isAdding: false,
     isEditing: false,
-    activeItemId: null,
+    activeDishId: null,
 }
 
 
-export default function DishesDisplay({items}) {
+export default function DishesDisplay({dishes}) {
     const [state, setState] = useState(initState)
     return (
         <div className={styles.container}>
@@ -21,9 +21,9 @@ export default function DishesDisplay({items}) {
                 <SearchBar/>
                 <AddButton state={state} setState={setState}/>
             </div>
-            <ItemsDisplay state={state} setState={setState} items={items}/>
+            <Display state={state} setState={setState} dishes={dishes}/>
             {state.isAdding && <AddModal state={state} setState={setState}/>}
-            {state.isEditing && <EditModal state={state} setState={setState} items={items}/>}
+            {state.isEditing && <EditModal state={state} setState={setState} dishes={dishes}/>}
         </div>
     )
 }

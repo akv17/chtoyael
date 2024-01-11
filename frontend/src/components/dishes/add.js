@@ -1,6 +1,6 @@
 import { useSubmit } from "react-router-dom";
 import styles from "./add.module.css"
-import ItemModal from "./modal";
+import DishModal from "./modal";
 
 
 export function AddButton({state, setState}) {
@@ -25,5 +25,5 @@ export function AddModal({state, setState}) {
         submit(e.currentTarget)
     }
 
-    return <ItemModal action="add" onSubmit={onSubmit} onClose={onClose}/>
+    return <DishModal action="add" onSubmit={onSubmit} onClose={onClose}/>
 }

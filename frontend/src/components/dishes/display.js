@@ -1,31 +1,27 @@
 import styles from "./display.module.css"
 
 
-export function ItemsDisplay({state, setState, items}) {
+export default function Display({state, setState, dishes}) {
     
     function onClick(id) {
-        setState({...state, isEditing: true, activeItemId: id})
+        setState({...state, isEditing: true, activeDishId: id})
     }
-    
-    const comps = items.map((it, i) => {return createItem(i, it, onClick)})
+    const comps = dishes.map((d, i) =>
+        <Dish
+            key={i}
+            name={d.getName()}
+            protein={d.getProtein()}
+            fat={d.getFat()}
+            carbs={d.getCarbs()}
+            kcal={d.getKcal()}
+            onClick={() => {onClick(d.getId())}}
+        />
+    )
     return <div className={styles.grid}>{comps}</div>
 }
 
 
-function createItem(idx, data, onClick) {
-    return <Item
-        key={idx}
-        name={data.name}
-        protein={data.protein}
-        fat={data.fat}
-        carbs={data.carbs}
-        kcal={data.kcal}
-        onClick={() => {onClick(data.id)}}
-    />
-}
-
-
-function Item({name, protein, fat, carbs, kcal, onClick}) {
+function Dish({name, protein, fat, carbs, kcal, onClick}) {
     return (
         <div className={styles.container} onMouseDown={onClick}>
             <div className={styles.image}></div>
