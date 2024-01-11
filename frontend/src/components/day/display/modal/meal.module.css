@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 12px;
+}
+.label {
+    font-size: 20px;
+    margin-bottom: 1vh;
+}
+
+.nameSelector {
+    background: none;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: inherit;
+    padding: 0.5vh 0.5vw;
+}
+
+.timeContainer {
+    display: flex;
+    flex-direction: column;
+}
+.timeSlotsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+}
+.timeSlot {
+    display: flex;
+    gap: 0.25vw;
+    font-size: 16px;
+
+}
+.timeValue {
+    border: none;
+    border-bottom: 1px solid white;
+    background: none;
+    width: 10%;
+    color: inherit;
+    text-align: center;
+}

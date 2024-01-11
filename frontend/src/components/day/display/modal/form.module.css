@@ -7,18 +7,6 @@
     width: 10vw;
 }
 
-.formLabel {
-    font-size: 24px;
-}
-.formInput {
-    background: none;
-    border: 1px solid white;
-    border-radius: 10px;
-    color: white;
-    font-size: 18px;
-    padding: 0.5vh 0.5vw;
-}
-
 .submitContainer {
     display: flex;
     justify-content: end;

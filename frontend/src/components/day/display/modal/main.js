@@ -1,14 +1,15 @@
 import { useState } from "react";
 
-
 import styles from "./main.module.css"
 import Form from "./form";
-
 
 const initState = {
     isAdding: true,
     dishQuery: null,
     addedDishes: [],
+    addedWeights: {},
+    currentDish: null,
+    currentDishWeight: null,
 }
 
 

@@ -36,8 +36,11 @@ function Dropdown({state, setState, allDishes}) {
         setState({...state, dishQuery: query})
     }
 
-    function onDishClick(id) {
-        setState({...state, addedDishes: [...state.addedDishes, id]})
+    function onDishAdd(id) {
+        const newDishes = [...state.addedDishes, id]
+        const newWeights = {...state.addedWeights}
+        newWeights[id] = 100
+        setState({...state, addedDishes: newDishes, addedWeights: newWeights})
     }
 
     let dishesQueried = []
@@ -51,7 +54,7 @@ function Dropdown({state, setState, allDishes}) {
         <DropdownDish
             key={i}
             name={d.getName()}
-            onClick={() => {onDishClick(d.getId())}}
+            onClick={() => {onDishAdd(d.getId())}}
         />
     )
     return (
@@ -71,8 +74,10 @@ function DropdownSearchBar({onChange}) {
 
 function DropdownDish({name, onClick}) {
     return (
-        <div className={styles.dropdownDishContainer}>
-            <button type="button" className={styles.dropdownDishName} onClick={onClick}>{name}</button>
+        <div className={styles.dropdownDishContainer} onMouseDown={onClick}>
+            <div className={styles.dropdownDishName}>{name}</div>
+            {/* <button type="button" className={styles.dropdownDishAddButton} onClick={onClick}>+</button> */}
+            <button type="button" className={styles.dropdownDishAddButton}>+</button>
         </div>
     )
 }

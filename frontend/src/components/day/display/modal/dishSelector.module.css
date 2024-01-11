@@ -57,19 +57,24 @@
     overflow: scroll;
 }
 .dropdownDishContainer {
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
 }
 .dropdownDishContainer:hover {
-
+    color: var(--COLOR_ACCENT);
+    cursor: pointer;
 }
 .dropdownDishName {
     border: none;
     background: none;
     text-decoration: none;
-    color: white;
     font-size: 14px;
 }
-.dropdownDishName:hover {
-    color: var(--COLOR_ACCENT);
-    cursor: pointer;
+.dropdownDishAddButton {
+    font-size: 18px;
+    color: inherit;
+    border: none;
+    background: none;
 }
