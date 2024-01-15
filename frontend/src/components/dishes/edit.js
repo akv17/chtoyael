@@ -30,9 +30,9 @@ export function EditModal({state, setState, dishes}) {
         onDelete={onDelete}
         id={dish.getId()}
         name={dish.getName()}
-        protein={dish.getProtein()}
-        fat={dish.getFat()}
-        carbs={dish.getCarbs()}
-        kcal={dish.getKcal()}
+        protein={dish.getStat("protein")}
+        fat={dish.getStat("fat")}
+        carbs={dish.getStat("carbs")}
+        kcal={dish.getStat("kcal")}
     />
 }

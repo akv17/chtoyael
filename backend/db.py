@@ -1,5 +1,7 @@
-from sqlalchemy import create_engine, select
-from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, Session
+from typing import List
+
+from sqlalchemy import create_engine, select, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, Session, relationship, raiseload, joinedload
 
 
 class Base(DeclarativeBase):
@@ -14,28 +16,68 @@ class Dish(Base):
     fat: Mapped[float]
     carbs: Mapped[float]
     kcal: Mapped[float]
+    meals: Mapped[List['MealToDishes']] = relationship(cascade='all, delete-orphan')
 
     def __repr__(self):
         return f'Dish(id={self.id}, name={self.name})'
 
 
-class Meal: pass
+class MealToDishes(Base):
+    __tablename__ = 'meal_to_dishes'
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    weight: Mapped[float]
+    meal_id: Mapped[int] = mapped_column(ForeignKey('meals.id'))
+    dish_id: Mapped[int] = mapped_column(ForeignKey('dishes.id'))
 
 
-class Day: pass
+class Meal(Base):
+    __tablename__ = 'meals'
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    day_id: Mapped[int] = mapped_column(ForeignKey('days.id'))
+    day: Mapped['Day'] = relationship(back_populates='meals')
+    name: Mapped[str]
+    start_hour: Mapped[int]
+    start_minute: Mapped[int]
+    end_hour: Mapped[int]
+    end_minute: Mapped[int]
+    dishes: Mapped[List['MealToDishes']] = relationship(cascade='all, delete-orphan')
+
+    def __repr__(self):
+        return f'Meal(id={self.id} name={self.name})'
+
+
+class Day(Base):
+    __tablename__ = 'days'
+    id: Mapped[str] = mapped_column(primary_key=True, unique=True)
+    meals: Mapped[List['Meal']] = relationship(back_populates='day', cascade='all, delete-orphan')
+
+    def __repr__(self):
+        return f'Day(id={self.id})'
 
 
 class Database:
 
     def __init__(self):
-        self.engine = create_engine("sqlite:///data.db", echo=True)
+        self.engine = create_engine("sqlite:///data.db", echo=False)
         Base.metadata.create_all(self.engine)
-    
-    def select_all(self, table):
-        session = Session(self.engine)
-        stmt = select(table)
-        res = list(session.scalars(stmt))
-        return res
+
+    def select_batch(self, table, ids, joined=False):
+        with Session(self.engine) as session:
+            opts = [joinedload('*')] if joined else []
+            rv = session.query(table).options(opts).where(table.id.in_(ids)).all()
+            return rv
+
+    def select_one(self, table, id_, joined=False):
+        with Session(self.engine) as session:
+            opts = [joinedload('*')] if joined else []
+            rv = session.query(table).options(opts).where(table.id == id_).first()
+            return rv
+
+    def select_all(self, table, joined=False):
+        with Session(self.engine) as session:
+            opts = [joinedload('*')] if joined else []
+            rv = session.query(table).options(opts).all()
+            return rv
 
     def insert(self, obj):
         with Session(self.engine) as session:

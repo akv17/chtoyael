@@ -10,10 +10,10 @@ export default function Display({state, setState, dishes}) {
         <Dish
             key={i}
             name={d.getName()}
-            protein={d.getProtein()}
-            fat={d.getFat()}
-            carbs={d.getCarbs()}
-            kcal={d.getKcal()}
+            protein={d.getStat("protein")}
+            fat={d.getStat("fat")}
+            carbs={d.getStat("carbs")}
+            kcal={d.getStat("kcal")}
             onClick={() => {onClick(d.getId())}}
         />
     )

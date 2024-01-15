@@ -20,7 +20,7 @@ export default function Header() {
 
 
 function HeaderImage() {
-    return <img className={styles.image} src="/h1_.jpg"></img>
+    return <img className={styles.image} src="/header.jpg"></img>
 }
 
 

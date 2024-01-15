@@ -7,7 +7,11 @@ export default class DayServiceMock {
     constructor() {
         this.days = [...DAYS]
     }
-    
+
+    async getTodayId() {
+        return "05-01-2024"
+    }
+
     async getDay(id) {
         const map = new Map(this.days.map(d => [d.id, d]))
         let day = map.get(id)
