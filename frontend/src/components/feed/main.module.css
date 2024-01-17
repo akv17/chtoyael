@@ -1,84 +1,54 @@
 .container {
     display: flex;
     margin: 8vh 5vw;
-    /* align-items: center; */
-    /* justify-content: center; */
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    column-gap: 2vw;
-    row-gap: 2vh;
+    column-gap: 1vw;
+    row-gap: 10vh;
+    padding: 4vh 10vw;
+}
+
+.dayLink {
+    text-decoration: none;
 }
 
 .dayContainer {
-    color: white;
-    border: 2px solid white;
-    border-radius: 20px;
-    height: 20vh;
-    aspect-ratio: 1/1.25;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 1vh;
-}
-.dayContainer:hover {
-    border: 2px solid var(--COLOR_ACCENT);
-    color: var(--COLOR_ACCENT);
-    cursor: pointer;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 15vh;
+    aspect-ratio: 1/1.15;
 }
 
-
-.dayDateContainer {
-    background: rgb(255, 255, 255);
+.dayNameAndDateContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
     color: black;
     width: 100%;
-    border-radius: 20px 20px 0 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5vh;
-    padding: 1vh 0;
-    margin-bottom: 2vh;
+    height: 50%;
+    border-radius: 10px 10px 0 0 ;
+    border: 1px solid white;
+
+}
+.dayNameAndDateContainer:hover {
+    background: var(--COLOR_ACCENT);
+    border: 1px solid var(--COLOR_ACCENT);
+    cursor: pointer;
 }
 
 .dayName {
     font-size: 24px;
-    text-decoration: underline;
 }
 
 .dayDate {
-    font-size: 16px;
+    font-size: 14px;
 }
-
-.dayNumMeals {
-    flex: 1;
-    font-size: 26px;
-    text-decoration: underline;
-    border-radius: 50%;
-    aspect-ratio: 1/1;
-    text-align: center;
-}
-
-.dayStatsContainer {
-    flex: 0.5;
-    display: flex;
-    flex-direction: column;
-}
-
-.dayStatsValue {
-    font-size: 12px;
-    text-align: center;
-}
-
-.dayStatsSupplementContainer {
-    display: flex;
-    gap: 0.5vw;
-}
-
-.dayStatsSupplementValue {
-    font-size: 12px;
-}
-

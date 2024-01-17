@@ -6,15 +6,16 @@ export default function Display({state, setState, dishes}) {
     function onClick(id) {
         setState({...state, isEditing: true, activeDishId: id})
     }
+
     const comps = dishes.map((d, i) =>
         <Dish
             key={i}
-            name={d.getName()}
-            protein={d.getStat("protein")}
-            fat={d.getStat("fat")}
-            carbs={d.getStat("carbs")}
-            kcal={d.getStat("kcal")}
-            onClick={() => {onClick(d.getId())}}
+            name={d.name}
+            protein={d.protein}
+            fat={d.fat}
+            carbs={d.carbs}
+            kcal={d.kcal}
+            onClick={() => {onClick(d.id)}}
         />
     )
     return <div className={styles.grid}>{comps}</div>

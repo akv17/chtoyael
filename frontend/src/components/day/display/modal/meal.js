@@ -16,20 +16,32 @@ export function MealName({name=""}) {
 }
 
 
-export function MealTime({start="", end=""}) {
+export function MealTime({startHour, startMinute, endHour, endMinute}) {
+    
+    function formatValue(value) {
+        let fmtValue = String(value)
+        if (!fmtValue.length) return ""
+        fmtValue = fmtValue.length == 1 ? `0${fmtValue}` : fmtValue
+        return fmtValue
+    }
+
+    const fmtStartHour = formatValue(startHour)
+    const fmtStartMin = formatValue(startMinute)
+    const fmtEndHour = formatValue(endHour)
+    const fmtEndMin = formatValue(endMinute)
     return (
         <div className={styles.container}>
             <label className={styles.label}>Время</label>
             <div className={styles.timeSlotsContainer}>
                 <div className={styles.timeSlot}>
-                    <input type="text" name="timeStartHour" className={styles.timeValue} defaultValue="10"/>
+                    <input type="text" name="startHour" className={styles.timeValue} defaultValue={fmtStartHour}/>
                     <div className={styles.timeValueSep}>:</div>
-                    <input type="text" name="timeStartMinute" className={styles.timeValue} defaultValue="00"/>
+                    <input type="text" name="startMinute" className={styles.timeValue} defaultValue={fmtStartMin}/>
                 </div>
                 <div className={styles.timeSlot}>
-                    <input type="text" name="timeEndHour" className={styles.timeValue} defaultValue="10"/>
+                    <input type="text" name="endHour" className={styles.timeValue} defaultValue={fmtEndHour}/>
                     <div className={styles.timeValueSep}>:</div>
-                    <input type="text" name="timeEndMinute" className={styles.timeValue} defaultValue="30"/>
+                    <input type="text" name="endMinute" className={styles.timeValue} defaultValue={fmtEndMin}/>
                 </div>
             </div>
         </div>

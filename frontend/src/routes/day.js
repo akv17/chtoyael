@@ -1,51 +1,57 @@
 import { useLoaderData, redirect } from "react-router-dom";
 
 import styles from "./today.module.css"
-import DayServiceMock from "../services/day";
-import DishesServiceMock from "../services/dishes";
+import BackendService from "../api/service";
 import Header from "../components/header/main";
 import DayDisplay from "../components/day/main";
 
-const dayService = new DayServiceMock()
-const dishesService = new DishesServiceMock()
+
+const service = new BackendService()
 
 
 export async function dayLoader({request}) {
     const path = request.url.split('/')
     const dayId = path[path.length - 1]
-    const day = await dayService.getDay(dayId)
-    const allDishes = await dishesService.get()
-    return {day, allDishes}
+    const day = await service.getDay(dayId)
+    const meals = await service.getDayMeals(dayId)
+    const allDishes = await service.getDishes()
+    return {day, meals, allDishes}
 }
 
 
 export async function dayAction({ request }) {
     const formData = await request.formData()
     const data = Object.fromEntries(formData.entries())
+    const dayId = data.dayId
     const path = request.url.split('/')
     const action = path[path.length - 1]
-    console.log(action, data)
-    // if (action === "add") {
-    //     service.add(data)
-    // }
-    // else if (action === "edit") {
-    //     if (data.hasOwnProperty("delete")) {
-    //         service.delete(data.id)
-    //     }
-    //     else {
-    //         service.update(data)
-    //     }
-    // }
-    return redirect('/day/05-01-2024')
+    if (action === "addMeal") {
+        delete data.submit
+        delete data.dayId
+        service.addMeal(dayId, data)
+    }
+    else if (action === "editMeal") {
+        delete data.submit
+        if (data.hasOwnProperty("deleteMeal")) {
+            service.deleteMeal(data.mealId)
+        }
+        else {
+            delete data.dayId
+            const mealId = data.mealId
+            delete data.mealId
+            service.updateMeal(mealId, data)
+        }
+    }
+    return redirect(`/day/${dayId}`)
 }
 
 
 export function DayRoute() {
-    const {day, allDishes} = useLoaderData()
+    const {day, meals, allDishes} = useLoaderData()
     return (
         <div className={styles.container}>
             <Header/>
-            <DayDisplay day={day} allDishes={allDishes}/>
+            <DayDisplay day={day} meals={meals} allDishes={allDishes}/>
         </div>
     )
 }

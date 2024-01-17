@@ -51,6 +51,15 @@ class Day(Model):
     class Meta:
         database = DB_PROXY
 
+    def get_day_string(self):
+        return self.id.split('-')[0]
+    
+    def get_month_string(self):
+        return self.id.split('-')[1]
+    
+    def get_year_string(self): 
+        return self.id.split('-')[2]
+
 
 class MealToDay(Model):
     id = AutoField()

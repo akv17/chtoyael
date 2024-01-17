@@ -49,8 +49,9 @@ export class Day {
 
 export class Meal {
     
-    constructor(data) {
+    constructor(data, allDishes) {
         this._data = data
+        
     }
 
     getName() {

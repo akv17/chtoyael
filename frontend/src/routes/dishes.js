@@ -9,9 +9,7 @@ const service = new BackendService()
 
 
 export async function dishesLoader({ request }) {
-    const url = new URL(request.url)
-    const query = url.searchParams.get("query")
-    const dishes = await service.getDishes(query)
+    const dishes = await service.getDishes()
     return dishes
 }
 

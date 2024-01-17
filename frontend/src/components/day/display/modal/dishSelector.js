@@ -5,7 +5,7 @@ export default function DishSelector({state, setState, allDishes}) {
     return (
         <div className={styles.container}>
             <Control state={state} setState={setState}/>
-            {state.isAdding && <Dropdown state={state} setState={setState} allDishes={allDishes}/>}
+            {state.isAddingMealDish && <Dropdown state={state} setState={setState} allDishes={allDishes}/>}
         </div>
     )
 }
@@ -13,11 +13,11 @@ export default function DishSelector({state, setState, allDishes}) {
 
 function Control({state, setState}) {
     function onAddClick() {
-        if (state.isAdding) {
-            setState({...state, isAdding: false})
+        if (state.isAddingMealDish) {
+            setState({...state, isAddingMealDish: false})
         }
         else {
-            setState({...state, isAdding: true})
+            setState({...state, isAddingMealDish: true})
         }
     }
     return (
@@ -33,19 +33,20 @@ function Dropdown({state, setState, allDishes}) {
 
     function onSearchQueryChange(e) {
         const query = e.target.value.length > 0 ? e.target.value : null
-        setState({...state, dishQuery: query})
+        setState({...state, mealDishQuery: query})
     }
 
     function onDishAdd(id) {
-        const newDishes = [...state.addedDishes, id]
-        const newWeights = {...state.addedWeights}
-        newWeights[id] = 100
-        setState({...state, addedDishes: newDishes, addedWeights: newWeights})
+        const ids = state.mealDishes.map(d => d.id)
+        if (ids.includes(id)) return
+        let dish = new Map(allDishes.map(d => [d.id, d])).get(id)
+        dish = {...dish, weight: dish.weight || 100}
+        setState({...state, mealDishes: [...state.mealDishes, dish]})
     }
 
     let dishesQueried = []
-    if (state.dishQuery !== null) {
-        dishesQueried = allDishes.filter(d => d.getName().toLowerCase().startsWith(state.dishQuery.toLowerCase()))
+    if (state.mealDishQuery !== null) {
+        dishesQueried = allDishes.filter(d => d.name.toLowerCase().startsWith(state.mealDishQuery.toLowerCase()))
     }
     else {
         dishesQueried = allDishes
@@ -53,8 +54,8 @@ function Dropdown({state, setState, allDishes}) {
     const dishComps = dishesQueried.map((d, i) =>
         <DropdownDish
             key={i}
-            name={d.getName()}
-            onClick={() => {onDishAdd(d.getId())}}
+            name={d.name}
+            onClick={() => {onDishAdd(d.id)}}
         />
     )
     return (

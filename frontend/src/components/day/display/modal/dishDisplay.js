@@ -3,36 +3,37 @@ import styles from "./dishDisplay.module.css"
 const WEIGHT_INCREASE = 10
 
 
-export default function DishDisplay({state, setState, dishes}) {
+export default function DishDisplay({state, setState}) {
+    const dishes = state.mealDishes
     
     function onDelete(id) {
-        const newDishes = dishes.filter(d => d.getId() !== id).map(d => d.getId())
-        const newWeights = {...state.addedWeights}
-        delete newWeights[id]
-        setState({...state, addedDishes: newDishes, addedWeights: newWeights})
+        const newDishes = dishes.filter(d => d.id !== id)
+        setState({...state, mealDishes: newDishes})
     }
     
     function onDecreaseWeight(id) {
-        const newWeights = {...state.addedWeights}
-        newWeights[id] = Math.max(0, newWeights[id] - WEIGHT_INCREASE)
-        setState({...state, addedWeights: newWeights})
+        const idx = dishes.map(d => d.id).indexOf(id)
+        const newDishes = [...dishes]
+        newDishes[idx].weight = Math.max(0, newDishes[idx].weight - WEIGHT_INCREASE)
+        setState({...state, mealDishes: newDishes})
     }
 
     function onIncreaseWeight(id) {
-        const newWeights = {...state.addedWeights}
-        newWeights[id] += WEIGHT_INCREASE
-        setState({...state, addedWeights: newWeights})
+        const idx = dishes.map(d => d.id).indexOf(id)
+        const newDishes = [...dishes]
+        newDishes[idx].weight = newDishes[idx].weight + WEIGHT_INCREASE
+        setState({...state, mealDishes: newDishes})
     }
 
     const dishComps = dishes.map((d, i) =>
         <Dish
             key={i}
-            name={d.getName()}
-            image={d.getImage()}
-            weight={state.addedWeights[d.getId()]}
-            onDelete={() => onDelete(d.getId())}
-            onDecreaseWeight={() => onDecreaseWeight(d.getId())}
-            onIncreaseWeight={() => onIncreaseWeight(d.getId())}
+            name={d.name}
+            image={null}
+            weight={d.weight}
+            onDelete={() => onDelete(d.id)}
+            onDecreaseWeight={() => onDecreaseWeight(d.id)}
+            onIncreaseWeight={() => onIncreaseWeight(d.id)}
         />
     )
     return (
